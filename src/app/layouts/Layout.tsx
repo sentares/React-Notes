@@ -1,14 +1,17 @@
-// import { getDynamicComponent } from '@/components/common/dynamic'
 import { Outlet } from 'react-router-dom'
-
-// const Navbar = getDynamicComponent('Navbar')
+import classes from './Layout.module.css'
+import { Header } from '@/widgets/header'
+import { Sidebar } from '@/widgets/sidebar'
 
 export function Layout() {
 	return (
-		<div className='app'>
-			{/* <Navbar /> */}
+		<div className={classes.layout}>
+			<Header />
 			<main>
-				<Outlet />
+				<div className={classes.inner}>
+					<Sidebar />
+					<Outlet />
+				</div>
 			</main>
 		</div>
 	)
