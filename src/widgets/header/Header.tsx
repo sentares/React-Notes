@@ -1,0 +1,28 @@
+import { getDynamicComponent } from '@/shared/components/dynamic'
+import { ActionIcon, Burger, Container } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks'
+import { IconLogout } from '@tabler/icons-react'
+import classes from './Header.module.css'
+
+const ThemeToggle = getDynamicComponent('ThemeToggle')
+
+export const Header = () => {
+	const [opened, { toggle }] = useDisclosure(false)
+
+	return (
+		<header className={classes.header}>
+			<Container size='xl' className={classes.inner}>
+				<h1>Мои заметки</h1>
+
+				<Burger opened={opened} onClick={toggle} hiddenFrom='xs' size='sm' />
+				<div className={classes.rightSection}>
+					<ThemeToggle />
+
+					<ActionIcon variant='light' color='red' size='lg' aria-label='Logout'>
+						<IconLogout className={classes.linkIcon} stroke={1.5} size={18} />
+					</ActionIcon>
+				</div>
+			</Container>
+		</header>
+	)
+}
