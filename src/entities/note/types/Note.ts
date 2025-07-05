@@ -1,5 +1,8 @@
 export interface Note {
 	id: string
 	title: string
-	createdAt: string
+	createdAt: {
+		nanoseconds: number
+		seconds: number
+	}
 }
