@@ -1,4 +1,5 @@
 import { useAuth } from '@/app/providers/context'
+import { Search } from '@/features/search/ui'
 import { getDynamicComponent } from '@/shared/components/dynamic'
 import { ActionIcon, Burger, Container } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
@@ -22,7 +23,10 @@ export const Header = () => {
 				<h1>Мои заметки</h1>
 
 				<Burger opened={opened} onClick={toggle} hiddenFrom='xs' size='sm' />
+
 				<div className={classes.rightSection}>
+					<Search />
+
 					<ThemeToggle />
 
 					<ActionIcon
