@@ -1,7 +1,5 @@
 import { useLocalStorage } from '@/shared/hooks'
 import { createContext, useContext, type ReactNode } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { internalPaths } from '../router'
 
 interface AuthContextType {
 	isAuthenticated: boolean

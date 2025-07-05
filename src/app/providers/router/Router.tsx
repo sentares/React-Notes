@@ -8,6 +8,7 @@ import { internalPaths } from './RoutePaths'
 
 const HomePage = lazy(() => import('@/pages/home'))
 const NotFoundPage = lazy(() => import('@/pages/not-found'))
+const NotePage = lazy(() => import('@/pages/note'))
 
 const Auth = lazy(() => import('@/pages/auth'))
 
@@ -36,27 +37,10 @@ export const Router = createBrowserRouter([
 				children: [
 					{ index: true, element: withSuspense(<HomePage />) },
 
-					// {
-					// 	path: internalPaths.characters.list,
-					// 	children: [
-					// 		{ index: true, element: withSuspense(<CharactersList />) },
-					// 		{ path: ':id', element: withSuspense(<CharacterDetail />) },
-					// 	],
-					// },
-					// {
-					// 	path: internalPaths.locations.list,
-					// 	children: [
-					// 		{ index: true, element: withSuspense(<LocationsList />) },
-					// 		{ path: ':id', element: withSuspense(<LocationDetail />) },
-					// 	],
-					// },
-					// {
-					// 	path: internalPaths.episodes.list,
-					// 	children: [
-					// 		{ index: true, element: withSuspense(<EpisodesList />) },
-					// 		{ path: ':id', element: withSuspense(<EpisodeDetail />) },
-					// 	],
-					// },
+					{
+						path: internalPaths.note.base,
+						children: [{ path: ':id', element: withSuspense(<NotePage />) }],
+					},
 				],
 			},
 		],

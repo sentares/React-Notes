@@ -4,7 +4,7 @@ import { useState } from 'react'
 import type { Profile } from '../../types'
 
 export const useProfiles = () => {
-	const { getAll, getOne, add, remove } = useFirestore()
+	const { getAll, getOne } = useFirestore()
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState<Error | null>(null)
 
@@ -39,43 +39,10 @@ export const useProfiles = () => {
 		}
 	}
 
-	const addProfile = async (
-		data: Omit<Profile, 'id'>
-	): Promise<string | undefined> => {
-		setLoading(true)
-		setError(null)
-
-		try {
-			const newId = await add(apiPaths.profiles, data)
-			return newId
-		} catch (error) {
-			const normalized = normalizeError(error, 'Не удалось добавить профиль')
-			setError(normalized)
-		} finally {
-			setLoading(false)
-		}
-	}
-
-	const deleteProfile = async (id: string): Promise<void> => {
-		setLoading(true)
-		setError(null)
-
-		try {
-			await remove(apiPaths.profiles, id)
-		} catch (error) {
-			const normalized = normalizeError(error, 'Не удалось удалить профиль')
-			setError(normalized)
-		} finally {
-			setLoading(false)
-		}
-	}
-
 	return {
 		loading,
 		error,
 		fetchAll,
 		fetchById,
-		addProfile,
-		deleteProfile,
 	}
 }

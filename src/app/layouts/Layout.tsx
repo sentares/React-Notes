@@ -1,7 +1,7 @@
-import { Outlet } from 'react-router-dom'
-import classes from './Layout.module.css'
 import { Header } from '@/widgets/header'
 import { Sidebar } from '@/widgets/sidebar'
+import { Outlet } from 'react-router-dom'
+import classes from './Layout.module.css'
 
 export function Layout() {
 	return (

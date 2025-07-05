@@ -1,5 +1,5 @@
 const HomePage = () => {
-	return <>asdsada</>
+	return <div></div>
 }
 
 export default HomePage

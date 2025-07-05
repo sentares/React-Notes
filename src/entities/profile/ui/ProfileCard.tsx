@@ -1,7 +1,7 @@
 import { Text, UnstyledButton } from '@mantine/core'
+import { IconUser } from '@tabler/icons-react'
 import type { Profile } from '../types'
 import classes from './ProfileCard.module.css'
-import { IconUser } from '@tabler/icons-react'
 
 interface ProfileCardProps {
 	profile: Profile

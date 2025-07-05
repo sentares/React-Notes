@@ -1,41 +1,42 @@
-import { Center, Loader, ScrollArea, Text } from '@mantine/core'
-import { useEffect, useState } from 'react'
-import { useNotes } from '../../hooks/api'
-import type { Note } from '../../types'
+import { useNotesContext } from '@/app/providers/context'
+import { internalPaths } from '@/app/providers/router'
+import { Button, Center, Loader, ScrollArea, Text } from '@mantine/core'
+import { IconPlus } from '@tabler/icons-react'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { NoteCard } from '../card'
 import classes from './NoteList.module.css'
 
 export const NoteList = () => {
-	const { addNote, deleteNote, fetchAll, error, loading } = useNotes()
-	const [notes, setNotes] = useState<Note[]>([])
+	const navigate = useNavigate()
+
+	const { notesList, error, loading, refreshNoteslist, createNote } =
+		useNotesContext()
 
 	const getNotes = async () => {
-		const result = await fetchAll()
-		setNotes(result)
+		await refreshNoteslist()
+	}
+
+	const handleCreateNote = async () => {
+		const newNote = await createNote()
+		if (newNote) {
+			navigate(internalPaths.note.detail(newNote.id))
+		}
 	}
 
 	useEffect(() => {
 		getNotes()
 	}, [])
 
-	// const handleAdd = async () => {
-	// 	if (!newTitle.trim()) return
-	// 	await addNote({ title: newTitle })
-	// 	setNewTitle('')
-	// 	await loadNotes()
-	// }
-
-	// const handleDelete = async (id: string) => {
-	// 	await deleteNote(id)
-	// 	await loadNotes()
-	// }
-
-	const handleClickNote = (item: Note) => {}
-
 	return (
 		<div className={classes.container}>
+			<Button mb='md' w='100%' onClick={handleCreateNote}>
+				<IconPlus size={18} />
+				Новая заметка
+			</Button>
+
 			<ScrollArea
-				h='calc(100vh - 100px)'
+				h='calc(100vh - 160px)'
 				scrollbarSize={8}
 				style={{ width: '100%' }}
 			>
@@ -47,12 +48,8 @@ export const NoteList = () => {
 					<Text c='red'>Ошибка загрузки: {error.message}</Text>
 				) : (
 					<div className={classes.noteList}>
-						{notes.map(item => (
-							<NoteCard
-								key={item.id}
-								note={item}
-								onClick={() => handleClickNote(item)}
-							/>
+						{notesList.map(item => (
+							<NoteCard key={item.id} note={item} />
 						))}
 					</div>
 				)}

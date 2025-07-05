@@ -4,7 +4,7 @@ import { useState } from 'react'
 import type { Note } from '../../types'
 
 export const useNotes = () => {
-	const { getAll, getOne, add, remove } = useFirestore()
+	const { getAll, getOne, add, remove, update } = useFirestore()
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState<Error | null>(null)
 
@@ -40,17 +40,33 @@ export const useNotes = () => {
 	}
 
 	const addNote = async (
-		data: Omit<Note, 'id'>
-	): Promise<string | undefined> => {
+		data: Omit<Note, 'id' | 'createdAt'>
+	): Promise<Note | undefined> => {
 		setLoading(true)
 		setError(null)
 
 		try {
-			const newId = await add(apiPaths.notes, data)
-			return newId
+			const newNote = await add<Note>(apiPaths.notes, data)
+			return newNote
 		} catch (error) {
 			const normalized = normalizeError(error, 'Не удалось добавить заметку')
 			setError(normalized)
+			throw normalized
+		} finally {
+			setLoading(false)
+		}
+	}
+
+	const updateNote = async (id: string, data: Partial<Omit<Note, 'id'>>) => {
+		setLoading(true)
+		setError(null)
+
+		try {
+			await update(apiPaths.notes, id, data)
+		} catch (error) {
+			const normalized = normalizeError(error, 'Не удалось обновить заметку')
+			setError(normalized)
+			throw normalized
 		} finally {
 			setLoading(false)
 		}
@@ -76,6 +92,7 @@ export const useNotes = () => {
 		fetchAll,
 		fetchById,
 		addNote,
+		updateNote,
 		deleteNote,
 	}
 }
