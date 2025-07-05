@@ -49,13 +49,17 @@ export const useFirestore = () => {
 	const add = async <T = DocumentData>(
 		path: string,
 		data: Partial<T>
-	): Promise<string> => {
+	): Promise<T> => {
 		const collectionRef = collection(db, path)
 		const documentRef = await addDoc(collectionRef, {
 			...data,
 			createdAt: serverTimestamp(),
 		})
-		return documentRef.id
+
+		const snapshot = await getDoc(documentRef)
+		if (!snapshot.exists()) throw new Error('Document not found after add')
+
+		return { id: snapshot.id, ...snapshot.data() } as T
 	}
 
 	const update = async <T = DocumentData>(
