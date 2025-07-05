@@ -34,7 +34,11 @@ export const NoteList = () => {
 
 	return (
 		<div className={classes.container}>
-			<ScrollArea h='80vh' scrollbarSize={8} style={{ width: '100%' }}>
+			<ScrollArea
+				h='calc(100vh - 100px)'
+				scrollbarSize={8}
+				style={{ width: '100%' }}
+			>
 				{loading ? (
 					<Center mt='lg'>
 						<Loader />

@@ -1,7 +1,7 @@
 import classes from './NotePage.module.css'
 
 const NotePage = () => {
-	return <>asdsada</>
+	return <>NotePage</>
 }
 
 export default NotePage

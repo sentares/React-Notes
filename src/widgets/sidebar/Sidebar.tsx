@@ -6,9 +6,9 @@ import classes from './Sidebar.module.css'
 export function Sidebar() {
 	return (
 		<nav className={classes.navbar}>
-			<Button className={classes.addButton}>
+			{/* <Button className={classes.addButton}>
 				<IconPlus className={classes.icon} size={18} /> Добавить заметку
-			</Button>
+			</Button> */}
 			<NoteList />
 		</nav>
 	)
