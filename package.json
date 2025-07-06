@@ -15,9 +15,14 @@
 		"@mantine/hooks": "^8.1.2",
 		"@mantine/modals": "^8.1.2",
 		"@tabler/icons-react": "^3.34.0",
+		"firebase": "^11.10.0",
+		"marked": "^16.0.0",
+		"prism-react-renderer": "^2.4.1",
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0",
-		"react-router-dom": "^7.6.3"
+		"react-router-dom": "^7.6.3",
+		"react-simplemde-editor": "^5.2.0",
+		"simplemde": "^1.11.2"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.25.0",

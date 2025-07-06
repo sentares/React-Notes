@@ -1,4 +1,8 @@
 export const internalPaths = {
 	home: '/',
-	login: '/login',
+	auth: '/auth',
+	note: {
+		base: 'note',
+		detail: (id: string) => `/note/${id}`,
+	},
 } as const
