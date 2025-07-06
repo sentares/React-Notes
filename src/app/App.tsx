@@ -3,7 +3,6 @@ import { AuthProvider, NoteProvider } from './providers/context'
 import { ThemeProvider } from './providers/mantine'
 import { Router } from './providers/router'
 import '@mantine/core/styles.css'
-import './styles/index.css'
 
 function App() {
 	return (
