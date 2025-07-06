@@ -1,69 +1,69 @@
-# React + TypeScript + Vite
+````md
+# 📝 Notes App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, fast, and feature-rich Markdown note-taking app built with **React 19**, **TypeScript**, and **Vite 6**. It includes beautiful UI components from Mantine, Firebase integration, live Markdown preview with syntax highlighting, and Progressive Web App (PWA) support.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tech Stack
 
-## Expanding the ESLint configuration
+- **React 19** + **React DOM**
+- **TypeScript 5**
+- **Vite 6** + [`@vitejs/plugin-react-swc`](https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react-swc)
+- **Mantine 8** (`core`, `form`, `modals`, `hooks`)
+- **React Router DOM v7** for routing
+- **Firebase 11** for backend/data storage
+- **SimpleMDE**, **Marked**, and **Prism** for Markdown editing & highlighting
+- **PWA support** via `vite-plugin-pwa`
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 📦 Installation
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+```bash
+npm install
+````
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## 📂 Available Scripts
+
+| Script            | Description                     |
+| ----------------- | ------------------------------- |
+| `npm run dev`     | Run the app in development mode |
+| `npm run build`   | Build the app for production    |
+| `npm run preview` | Preview the production build    |
+| `npm run lint`    | Run ESLint against the codebase |
+
+---
+
+## ✨ Features
+
+* 📝 Write and preview **Markdown** with code highlighting
+* 🌗 Fully themeable with **dark/light mode**
+* 💡 Syntax highlighting powered by **Prism**
+* 🧠 Form validation with **Mantine Form**
+* 🔥 Integration with **Firebase** for storage and auth
+* ⚙️ Type-safe, modular, and scalable codebase
+* 📲 PWA-ready for offline usage
+
+
+---
+
+
+## 🔐 Environment Variables
+
+Create a `.env` file in the root to provide your Firebase config:
+
+```env
+VITE_FIREBASE_API_KEY=your-api-key
+VITE_FIREBASE_AUTH_DOMAIN=your-auth-domain
+VITE_FIREBASE_PROJECT_ID=your-project-id
+...
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🔌 PWA Support
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+`vite-plugin-pwa` is used to make the app installable and usable offline. Be sure to configure your `vite.config.ts` accordingly.
