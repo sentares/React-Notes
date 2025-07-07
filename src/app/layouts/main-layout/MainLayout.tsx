@@ -1,9 +1,9 @@
 import { Header } from '@/widgets/header'
 import { Sidebar } from '@/widgets/sidebar'
 import { Outlet } from 'react-router-dom'
-import classes from './Layout.module.css'
+import classes from './MainLayout.module.css'
 
-export function Layout() {
+export function MainLayout() {
 	return (
 		<div className={classes.layout}>
 			<Header />
@@ -17,4 +17,4 @@ export function Layout() {
 	)
 }
 
-export default Layout
+export default MainLayout

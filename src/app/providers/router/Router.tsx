@@ -1,4 +1,4 @@
-import { Layout } from '@/app/layouts'
+import { MainLayout } from '@/app/layouts/main-layout'
 import { ErrorBoundary } from '@/shared/components/errorBoundary'
 import { Center, Loader } from '@mantine/core'
 import { lazy, Suspense } from 'react'
@@ -29,7 +29,7 @@ const withSuspense = (element: React.ReactNode) => (
 export const Router = createBrowserRouter([
 	{
 		path: internalPaths.home,
-		element: <Layout />,
+		element: <MainLayout />,
 		errorElement: withSuspense(<NotFoundPage />),
 		children: [
 			{
